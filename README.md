@@ -39,7 +39,8 @@ I also provide the performance of the UKF with radar-only and  lidar-only measur
 |Lidar only|0.089|0.096|0.208|0.224|
 |Radar+Lidar|0.065|0.083|0.159|0.212|
 
-Below we recall the performance obtained with the EKF (cf. [P6-ExtendedKalmanFilter project](link))
+Below we recall the performance obtained with the EKF (cf. [P6-ExtendedKalmanFilter project](https://github.com/ThomasGrelier/Udacity-SDC-P6-ExtendedKalmanFilter)
+
 |Type / RMSE|Px|Py |Vx |Vy|
 |:--------:|:----:|:----:|:----: |:----: |
 |Radar only|0.23|0.34|0.58|0.80|
@@ -47,6 +48,7 @@ Below we recall the performance obtained with the EKF (cf. [P6-ExtendedKalmanFil
 |Radar+Lidar|0.09|0.09|0.45|0.43|
 
 And in the table below we provide the accuracy improvement in %.
+
 |Type / RMSE|Px|Py |Vx |Vy|
 |:--------:|:----:|:----:|:----: |:----: |
 |Radar only|37.0|37.4|68.0|65.0|
