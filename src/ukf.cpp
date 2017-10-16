@@ -14,7 +14,7 @@ UKF::UKF() {
   // if this is false, laser measurements will be ignored (except during init)
   use_laser_ = true;
   // if this is false, radar measurements will be ignored (except during init)
-  use_radar_ = false;
+  use_radar_ = true;
   // State dimension
   n_x_ = 5;
   // Augmented state dimension
@@ -136,7 +136,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
    ****************************************************************************/
   if ((meas_package.sensor_type_ == MeasurementPackage::LASER) & use_laser_) {
     cout << endl << "### Update Lidar ###" << endl;
-    int update_lidar_method = 0;    // 0 -> UKF, other value -> KF
+    int update_lidar_method = 1;    // 0 -> UKF, other value -> KF
     UpdateLidar(meas_package.raw_measurements_, &nis_, update_lidar_method);
 
   } else if ((meas_package.sensor_type_ == MeasurementPackage::RADAR)  & use_radar_) {
@@ -280,7 +280,7 @@ void UKF::UpdateLidar(VectorXd z, double* nis, int update_lidar_method) {
   //innovation covariance matrix S
   MatrixXd S = MatrixXd(n_z,n_z);
 
-  if (update_lidar_method == 0) {
+  if (update_lidar_method == 0) {  // UKF
     //create matrix for sigma points in measurement space
     MatrixXd Zsig = MatrixXd(n_z, 2*n_aug_+1);
 
@@ -324,7 +324,7 @@ void UKF::UpdateLidar(VectorXd z, double* nis, int update_lidar_method) {
     P_ = P_ - K*S*K.transpose();
 
   }
-  else {
+  else { // KF
 	// measurement matrix definition
 	MatrixXd H = MatrixXd(2, 5);
 	H << 1, 0, 0, 0, 0,
